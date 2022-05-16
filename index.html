@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aranymetszés</title>
+</head>
+
+<body>
+    <h1>Aranymetszés</h1>
+    <script>
+        function* getFibonacciNumber(trueFibonacciNumbers) {
+            const Fib = []
+            Fib[0] = trueFibonacciNumbers ? 1 : 0
+            Fib[1] = 1;
+            yield Fib[0]; // 1
+            yield Fib[1]; // 1
+            let i = 2;
+            while (true) {
+                Fib[i] = Fib[i - 1] + Fib[i - 2];
+                yield Fib[i];
+                i++;
+            }
+        }
+        const Fibonacci = (num, lastNumberOnly, trueFibonacciNumbers) => {
+            const FibonacciNumber = getFibonacciNumber(trueFibonacciNumbers);
+            if (lastNumberOnly) {
+                for (let i = 0; i < num - 1; i++) {
+                    FibonacciNumber.next();
+                }
+                return [FibonacciNumber.next().value]
+            }
+            const result = [];
+            for (let i = 0; i < num; i++) {
+                result.push(FibonacciNumber.next().value);
+            }
+            return result;
+        };
+
+        Fibonacci(100, false, true).forEach((value, index, array) => {
+            if (index > 0) {
+                document.write(`${index + 1}. elem: ${value} arány: ${array[index] / array[index - 1].toFixed(10)}`)
+                document.write('<br>')
+                console.log(`${index + 1}. elem: ${value} arány: ${array[index] / array[index - 1].toFixed(10)}`)
+            }
+        })
+    </script>
+</body>
+
+</html>
