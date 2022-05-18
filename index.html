@@ -39,11 +39,11 @@
             return result;
         };
 
-        Fibonacci(100, false, true).forEach((value, index, array) => {
+        Fibonacci(1000, false, true).forEach((value, index, array) => {
             if (index > 0) {
-                document.write(`${index + 1}. elem: ${value} arány: ${array[index] / array[index - 1].toFixed(10)}`)
+                document.write(`${index + 1}. elem: ${value} arány: ${(array[index] / array[index - 1]).toFixed(10)}`)
                 document.write('<br>')
-                console.log(`${index + 1}. elem: ${value} arány: ${array[index] / array[index - 1].toFixed(10)}`)
+                console.log(`${index + 1}. elem: ${value} arány: ${(array[index] / array[index - 1]).toFixed(10)}`)
             }
         })
     </script>
